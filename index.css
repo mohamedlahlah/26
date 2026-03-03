@@ -220,18 +220,10 @@ body {
   letter-spacing: 0.025em;
 }
 
-.poster-decoration-dots {
+.poster-social-icons {
   display: flex;
   gap: 0.75rem;
-  filter: grayscale(100%);
-  opacity: 0.3;
-}
-
-.poster-dot {
-  width: 1rem;
-  height: 1rem;
-  background-color: #9ca3af;
-  border-radius: 0.125rem;
+  align-items: center;
 }
 
 /* Al-Investor Top Brands */

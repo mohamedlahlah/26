@@ -13,9 +13,9 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
   const slideIdClass = `slide-${safeId}`;
 
   return (
-    <div 
+    <div
       id={`slide-export-container-${data.id}`}
-      className={`poster-root ${slideIdClass}`} 
+      className={`poster-root ${slideIdClass}`}
       dir="rtl"
       style={{ backgroundColor: data.backgroundColor }}
     >
@@ -38,9 +38,9 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
       {/* Custom Logo (Top Left) */}
       {data.logoUrl && (
         <div className="poster-custom-logo-wrapper">
-          <img 
-            src={data.logoUrl} 
-            alt="Logo" 
+          <img
+            src={data.logoUrl}
+            alt="Logo"
             crossOrigin="anonymous"
             className="poster-custom-logo-img"
           />
@@ -49,20 +49,20 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
 
       {/* Arabic Brand (Top Left) */}
       <div className="poster-top-left-brand">
-         <span className="poster-top-brand-text">المستثمر</span>
+        <span className="poster-top-brand-text">المستثمر</span>
       </div>
 
       {/* English Brand (Top Right) */}
       <div className="poster-top-right-brand">
-         <span className="poster-top-brand-subtext">al-investor</span>
+        <span className="poster-top-brand-subtext">al-investor</span>
       </div>
 
       {/* Top Decorative Lines */}
       <div className="decorative-bg">
         <svg viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 50C100 0 300 100 400 50V0H0V50Z" fill={data.primaryColor}/>
-          <path d="M0 70C100 20 300 120 400 70" stroke={data.primaryColor} strokeWidth="0.5"/>
-          <path d="M0 90C100 40 300 140 400 90" stroke={data.primaryColor} strokeWidth="0.5"/>
+          <path d="M0 50C100 0 300 100 400 50V0H0V50Z" fill={data.primaryColor} />
+          <path d="M0 70C100 20 300 120 400 70" stroke={data.primaryColor} strokeWidth="0.5" />
+          <path d="M0 90C100 40 300 140 400 90" stroke={data.primaryColor} strokeWidth="0.5" />
         </svg>
       </div>
 
@@ -74,7 +74,7 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
         <h2 className="poster-highlight">
           {data.highlightedHeader}
         </h2>
-        
+
         <div className="poster-subheader-wrapper">
           <div className="line-decorator"></div>
           <p className="poster-subheader">
@@ -101,25 +101,25 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
       {/* Footer Image & Logos */}
       <div className="poster-footer">
         <div className="poster-image-container">
-          <img 
-            src={data.footerImage} 
-            alt="Context" 
+          <img
+            src={data.footerImage}
+            alt="Context"
             crossOrigin="anonymous"
             className="poster-footer-image"
           />
         </div>
-        
+
         <div className="poster-logo-bar">
           <div className="poster-brand-group">
-             <div className="poster-logo-bg">
-                <IconRenderer name="Zap" size={14} className="poster-logo-icon" />
-             </div>
-             <span className="poster-logo-text">ريف Reef</span>
+            <div className="poster-logo-bg">
+              <IconRenderer name="Zap" size={14} className="poster-logo-icon" />
+            </div>
+            <span className="poster-logo-text">منصة المستثمر الاقتصادية</span>
           </div>
-          <div className="poster-decoration-dots">
-             <div className="poster-dot"></div>
-             <div className="poster-dot"></div>
-             <div className="poster-dot"></div>
+          <div className="poster-social-icons">
+            <IconRenderer name="Facebook" size={18} className="poster-logo-icon" />
+            <IconRenderer name="Twitter" size={18} className="poster-logo-icon" />
+            <IconRenderer name="Linkedin" size={18} className="poster-logo-icon" />
           </div>
         </div>
       </div>

@@ -1,14 +1,17 @@
 
 import React from 'react';
-import { 
-  FileText, 
-  UserCheck, 
-  AlertCircle, 
-  Zap, 
-  Database, 
-  ShieldCheck, 
-  Globe, 
+import {
+  FileText,
+  UserCheck,
+  AlertCircle,
+  Zap,
+  Database,
+  ShieldCheck,
+  Globe,
   HelpCircle,
+  Facebook,
+  Twitter,
+  Linkedin,
   LucideIcon
 } from 'lucide-react';
 
@@ -20,7 +23,10 @@ const icons: Record<string, LucideIcon> = {
   Database,
   ShieldCheck,
   Globe,
-  HelpCircle
+  HelpCircle,
+  Facebook,
+  Twitter,
+  Linkedin
 };
 
 interface IconRendererProps {
