@@ -1,9 +1,14 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-
 export const generateCarouselContent = async (topic: string) => {
+  const apiKey = process.env.API_KEY || '';
+  if (!apiKey) {
+    throw new Error("API key must be set when using the Gemini API. Please set GEMINI_API_KEY in your .env file.");
+  }
+  
+  const ai = new GoogleGenAI({ apiKey });
+
   const prompt = `أنت خبير محتوى تسويقي ومصمم إنفوجرافيك. قم بإنشاء محتوى لكاروسيل (3 شرائح) حول الموضوع التالي: "${topic}". 
   يجب أن يكون الأسلوب مهنياً وموجهاً للجمهور السعودي بلهجة فصحى مبسطة.
   كل شريحة تحتاج إلى: عنوان رئيسي، كلمة مميزة في العنوان (يتم تلوينها بالذهبي)، عنوان فرعي، و 4 نقاط توضيحية قصيرة.
