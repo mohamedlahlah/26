@@ -13,6 +13,8 @@ export interface SlideData {
   points: SlidePoint[];
   footerImage: string;
   logoUrl?: string;
+  footerLogoUrl?: string;
+  footerLogoText?: string;
   customCss?: string;
   // ألوان الثيم
   primaryColor: string;

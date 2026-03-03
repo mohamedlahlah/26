@@ -52,6 +52,7 @@ const App: React.FC = () => {
   const [aiPrompt, setAiPrompt] = useState('');
   const [activeTab, setActiveTab] = useState<'ai' | 'text' | 'design' | 'custom'>('ai');
   const logoInputRef = useRef<HTMLInputElement>(null);
+  const footerLogoInputRef = useRef<HTMLInputElement>(null);
 
   const currentSlide = slides[currentIndex];
 
@@ -94,6 +95,17 @@ const App: React.FC = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         updateSlide({ logoUrl: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFooterLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        updateSlide({ footerLogoUrl: reader.result as string });
       };
       reader.readAsDataURL(file);
     }
@@ -184,8 +196,8 @@ const App: React.FC = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex-1 flex flex-col items-center py-4 gap-1 transition-all ${activeTab === tab.id
-                  ? 'bg-[#1e293b] text-cyan-400 border-b-2 border-cyan-400'
-                  : 'text-slate-500 hover:text-slate-300'
+                ? 'bg-[#1e293b] text-cyan-400 border-b-2 border-cyan-400'
+                : 'text-slate-500 hover:text-slate-300'
                 }`}
             >
               <tab.icon size={20} />
@@ -238,6 +250,38 @@ const App: React.FC = () => {
                   <label className="text-xs text-slate-500 mb-1 block font-[500]">العنوان الفرعي</label>
                   <input type="text" value={currentSlide.subHeader} onChange={(e) => updateSlide({ subHeader: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
                 </div>
+
+                {/* النقاط */}
+                <div className="pt-4 border-t border-slate-700">
+                  <label className="text-xs text-slate-500 mb-3 block font-[700]">عناصر القائمة (النقاط)</label>
+                  {currentSlide.points.map((point, index) => (
+                    <div key={point.id} className="mb-3">
+                      <input
+                        type="text"
+                        value={point.title}
+                        onChange={(e) => {
+                          const newPoints = [...currentSlide.points];
+                          newPoints[index] = { ...newPoints[index], title: e.target.value };
+                          updateSlide({ points: newPoints });
+                        }}
+                        className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400] text-sm"
+                        placeholder={`النقطة ${index + 1}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* الشعار السفلي النصي */}
+                <div className="pt-4 border-t border-slate-700">
+                  <label className="text-xs text-slate-500 mb-3 block font-[700]">الشعار سفلي النصي</label>
+                  <input
+                    type="text"
+                    value={currentSlide.footerLogoText !== undefined ? currentSlide.footerLogoText : 'منصة المستثمر الاقتصادية'}
+                    onChange={(e) => updateSlide({ footerLogoText: e.target.value })}
+                    className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]"
+                  />
+                  <p className="text-[10px] text-slate-500 mt-2">يظهر فقط إذا لم يتم رفع شعار سفلي في قسم "تخصيص".</p>
+                </div>
               </div>
             </div>
           )}
@@ -253,8 +297,8 @@ const App: React.FC = () => {
                       key={theme.name}
                       onClick={() => applyTheme(theme)}
                       className={`relative p-3 rounded-xl border transition-all text-right flex flex-col gap-3 group ${currentSlide.primaryColor === theme.primary
-                          ? 'border-cyan-500 bg-slate-800 shadow-lg shadow-cyan-900/10'
-                          : 'border-slate-700 bg-slate-800/40 hover:border-slate-500'
+                        ? 'border-cyan-500 bg-slate-800 shadow-lg shadow-cyan-900/10'
+                        : 'border-slate-700 bg-slate-800/40 hover:border-slate-500'
                         }`}
                     >
                       <div className="flex justify-between items-start">
@@ -311,7 +355,7 @@ const App: React.FC = () => {
               </div>
 
               <div className="pt-4 border-t border-slate-700">
-                <label className="text-xs text-slate-400 mb-3 block font-[700] uppercase tracking-wider">شعارك الخاص</label>
+                <label className="text-xs text-slate-400 mb-3 block font-[700] uppercase tracking-wider">شعارك الخاص (أعلى)</label>
                 <div className="flex items-center gap-4">
                   {currentSlide.logoUrl ? (
                     <div className="relative group w-16 h-16 bg-slate-900 rounded-lg overflow-hidden border border-slate-600 flex items-center justify-center p-2">
@@ -326,6 +370,25 @@ const App: React.FC = () => {
                     </button>
                   )}
                   <input type="file" ref={logoInputRef} onChange={handleLogoUpload} accept="image/*" className="hidden" />
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-700 mt-4">
+                <label className="text-xs text-slate-400 mb-3 block font-[700] uppercase tracking-wider">شعار السفلي (جانب مواقع التواصل)</label>
+                <div className="flex items-center gap-4">
+                  {currentSlide.footerLogoUrl ? (
+                    <div className="relative group w-16 h-16 bg-slate-900 rounded-lg overflow-hidden border border-slate-600 flex items-center justify-center p-2">
+                      <img src={currentSlide.footerLogoUrl} className="max-w-full max-h-full object-contain" alt="Footer Logo" />
+                      <button onClick={() => updateSlide({ footerLogoUrl: undefined })} className="absolute inset-0 bg-red-500/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                        <X size={20} />
+                      </button>
+                    </div>
+                  ) : (
+                    <button onClick={() => footerLogoInputRef.current?.click()} className="w-16 h-16 bg-slate-900 rounded-lg border-2 border-dashed border-slate-600 flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500 transition-all">
+                      <Plus size={24} />
+                    </button>
+                  )}
+                  <input type="file" ref={footerLogoInputRef} onChange={handleFooterLogoUpload} accept="image/*" className="hidden" />
                 </div>
               </div>
             </div>

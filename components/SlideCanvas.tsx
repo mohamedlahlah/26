@@ -107,10 +107,16 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
 
         <div className="poster-logo-bar">
           <div className="poster-brand-group">
-            <div className="poster-logo-bg">
-              <IconRenderer name="Zap" size={14} className="poster-logo-icon" />
-            </div>
-            <span className="poster-logo-text">منصة المستثمر الاقتصادية</span>
+            {data.footerLogoUrl ? (
+              <img src={data.footerLogoUrl} alt="Footer Logo" className="h-6 w-auto object-contain" crossOrigin="anonymous" />
+            ) : (
+              <>
+                <div className="poster-logo-bg">
+                  <IconRenderer name="Zap" size={14} className="poster-logo-icon" />
+                </div>
+                <span className="poster-logo-text">{data.footerLogoText || 'منصة المستثمر الاقتصادية'}</span>
+              </>
+            )}
           </div>
           <div className="poster-social-icons">
             <IconRenderer name="Facebook" size={18} className="poster-logo-icon" />
