@@ -48,14 +48,10 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({ data, onUpdate }) => {
       )}
 
       {/* Arabic Brand (Top Left) */}
-      <div className="poster-top-left-brand">
-        <span className="poster-top-brand-text">المستثمر</span>
-      </div>
+
 
       {/* English Brand (Top Right) */}
-      <div className="poster-top-right-brand">
-        <span className="poster-top-brand-subtext">al-investor</span>
-      </div>
+
 
       {/* Top Decorative Lines */}
       <div className="decorative-bg">
