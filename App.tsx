@@ -184,8 +184,8 @@ const App: React.FC = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex-1 flex flex-col items-center py-4 gap-1 transition-all ${activeTab === tab.id
-                ? 'bg-[#1e293b] text-cyan-400 border-b-2 border-cyan-400'
-                : 'text-slate-500 hover:text-slate-300'
+                  ? 'bg-[#1e293b] text-cyan-400 border-b-2 border-cyan-400'
+                  : 'text-slate-500 hover:text-slate-300'
                 }`}
             >
               <tab.icon size={20} />
@@ -253,8 +253,8 @@ const App: React.FC = () => {
                       key={theme.name}
                       onClick={() => applyTheme(theme)}
                       className={`relative p-3 rounded-xl border transition-all text-right flex flex-col gap-3 group ${currentSlide.primaryColor === theme.primary
-                        ? 'border-cyan-500 bg-slate-800 shadow-lg shadow-cyan-900/10'
-                        : 'border-slate-700 bg-slate-800/40 hover:border-slate-500'
+                          ? 'border-cyan-500 bg-slate-800 shadow-lg shadow-cyan-900/10'
+                          : 'border-slate-700 bg-slate-800/40 hover:border-slate-500'
                         }`}
                     >
                       <div className="flex justify-between items-start">
@@ -391,7 +391,7 @@ const App: React.FC = () => {
         <div className="fixed bottom-0 left-0 w-[400px] h-[400px] bg-emerald-900/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         {/* Slide Controls Top */}
-        <div className="w-full flex justify-between items-center mb-6 z-10 sticky top-0 bg-[#0a0f1c]/80 backdrop-blur-md py-4">
+        <div className="w-full max-w-[420px] flex justify-between items-center mb-6 z-10 sticky top-0 bg-[#0a0f1c]/80 backdrop-blur-md py-4">
           <div className="flex items-center gap-4">
             <span className="text-xs font-[700] text-slate-500 uppercase tracking-widest">الشريحة {currentIndex + 1}</span>
             <div className="flex gap-2">
@@ -413,7 +413,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Preview Container */}
-        <div className="w-full relative z-10 group mb-12">
+        <div className="w-full max-w-[420px] relative z-10 group mb-12">
           {/* Navigation Arrows (Desktop) */}
           <button onClick={() => setCurrentIndex(p => Math.max(0, p - 1))} disabled={currentIndex === 0} className="fixed top-1/2 right-[420px] md:right-[calc(50%+230px)] -translate-y-1/2 p-4 bg-[#1e293b] text-white rounded-full shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity disabled:hidden border border-slate-700 hidden lg:flex">
             <ChevronRight size={24} />
@@ -423,7 +423,7 @@ const App: React.FC = () => {
           </button>
 
           {/* THE CANVAS */}
-          <div className="w-full  shadow-[0_0_80px_rgba(0,0,0,0.6)] overflow-hidden border border-slate-800 ring-8 ring-slate-900/50">
+          <div className="w-full  shadow-[0_0_80px_rgba(0,0,0,0.6)]  overflow-hidden border border-slate-800 ring-8 ring-slate-900/50">
             <SlideCanvas data={currentSlide} onUpdate={updateSlide} />
           </div>
         </div>
