@@ -1,16 +1,16 @@
 
 import React, { useState, useRef } from 'react';
-import { 
-  Plus, 
-  Trash2, 
-  Download, 
-  Sparkles, 
-  ChevronRight, 
-  ChevronLeft, 
-  Type as TypeIcon, 
-  Image as ImageIcon, 
-  Settings, 
-  Palette, 
+import {
+  Plus,
+  Trash2,
+  Download,
+  Sparkles,
+  ChevronRight,
+  ChevronLeft,
+  Type as TypeIcon,
+  Image as ImageIcon,
+  Settings,
+  Palette,
   Code,
   RotateCcw,
   Upload,
@@ -143,7 +143,7 @@ const App: React.FC = () => {
           transformOrigin: 'top left'
         }
       });
-      
+
       const link = document.createElement('a');
       link.download = `slide-${currentIndex + 1}-${Date.now()}.png`;
       link.href = dataUrl;
@@ -152,14 +152,14 @@ const App: React.FC = () => {
       console.error("Export failed:", error);
       // محاولة تصدير بديلة في حال فشل الخطوط
       try {
-          const fallbackUrl = await htmlToImage.toPng(element, { pixelRatio: 2, skipFonts: true });
-          const link = document.createElement('a');
-          link.download = `slide-${currentIndex + 1}-fallback.png`;
-          link.href = fallbackUrl;
-          link.click();
-          alert("تم التصدير بنجاح (بدون بعض التنسيقات الخارجية).");
+        const fallbackUrl = await htmlToImage.toPng(element, { pixelRatio: 2, skipFonts: true });
+        const link = document.createElement('a');
+        link.download = `slide-${currentIndex + 1}-fallback.png`;
+        link.href = fallbackUrl;
+        link.click();
+        alert("تم التصدير بنجاح (بدون بعض التنسيقات الخارجية).");
       } catch (e) {
-          alert("فشل تصدير الصورة، يرجى التأكد من اتصال الإنترنت.");
+        alert("فشل تصدير الصورة، يرجى التأكد من اتصال الإنترنت.");
       }
     } finally {
       setIsExporting(false);
@@ -168,10 +168,10 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0f172a] flex flex-col md:flex-row h-screen overflow-hidden font-[IBM Plex Sans Arabic]" dir="rtl">
-      
+
       {/* Sidebar */}
       <div className="w-full md:w-[400px] bg-[#1e293b] border-l border-slate-700 flex flex-col overflow-hidden z-20 shadow-2xl">
-        
+
         {/* Tabs Header */}
         <div className="flex border-b border-slate-700 bg-[#111827]">
           {[
@@ -183,11 +183,10 @@ const App: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex-1 flex flex-col items-center py-4 gap-1 transition-all ${
-                activeTab === tab.id 
-                  ? 'bg-[#1e293b] text-cyan-400 border-b-2 border-cyan-400' 
-                  : 'text-slate-500 hover:text-slate-300'
-              }`}
+              className={`flex-1 flex flex-col items-center py-4 gap-1 transition-all ${activeTab === tab.id
+                ? 'bg-[#1e293b] text-cyan-400 border-b-2 border-cyan-400'
+                : 'text-slate-500 hover:text-slate-300'
+                }`}
             >
               <tab.icon size={20} />
               <span className="text-[10px] font-[700] uppercase">{tab.label}</span>
@@ -197,7 +196,7 @@ const App: React.FC = () => {
 
         {/* Tab Content Area */}
         <div className="flex-grow overflow-y-auto p-6 scrollbar-hide space-y-8">
-          
+
           {/* AI TAB */}
           {activeTab === 'ai' && (
             <div className="space-y-6">
@@ -225,21 +224,21 @@ const App: React.FC = () => {
           {/* TEXT TAB */}
           {activeTab === 'text' && (
             <div className="space-y-6">
-               <h3 className="text-slate-300 font-[700] mb-4">تعديل النصوص</h3>
-               <div className="space-y-4">
-                  <div>
-                    <label className="text-xs text-slate-500 mb-1 block font-[500]">العنوان الرئيسي</label>
-                    <input type="text" value={currentSlide.header} onChange={(e) => updateSlide({ header: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-slate-500 mb-1 block font-[500]">الكلمة المميزة (ذهبي)</label>
-                    <input type="text" value={currentSlide.highlightedHeader} onChange={(e) => updateSlide({ highlightedHeader: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
-                  </div>
-                  <div>
-                    <label className="text-xs text-slate-500 mb-1 block font-[500]">العنوان الفرعي</label>
-                    <input type="text" value={currentSlide.subHeader} onChange={(e) => updateSlide({ subHeader: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
-                  </div>
-               </div>
+              <h3 className="text-slate-300 font-[700] mb-4">تعديل النصوص</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="text-xs text-slate-500 mb-1 block font-[500]">العنوان الرئيسي</label>
+                  <input type="text" value={currentSlide.header} onChange={(e) => updateSlide({ header: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
+                </div>
+                <div>
+                  <label className="text-xs text-slate-500 mb-1 block font-[500]">الكلمة المميزة (ذهبي)</label>
+                  <input type="text" value={currentSlide.highlightedHeader} onChange={(e) => updateSlide({ highlightedHeader: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
+                </div>
+                <div>
+                  <label className="text-xs text-slate-500 mb-1 block font-[500]">العنوان الفرعي</label>
+                  <input type="text" value={currentSlide.subHeader} onChange={(e) => updateSlide({ subHeader: e.target.value })} className="w-full p-2.5 bg-slate-800 border border-slate-600 rounded text-slate-200 outline-none focus:border-cyan-500 font-[400]" />
+                </div>
+              </div>
             </div>
           )}
 
@@ -253,24 +252,23 @@ const App: React.FC = () => {
                     <button
                       key={theme.name}
                       onClick={() => applyTheme(theme)}
-                      className={`relative p-3 rounded-xl border transition-all text-right flex flex-col gap-3 group ${
-                        currentSlide.primaryColor === theme.primary 
-                        ? 'border-cyan-500 bg-slate-800 shadow-lg shadow-cyan-900/10' 
+                      className={`relative p-3 rounded-xl border transition-all text-right flex flex-col gap-3 group ${currentSlide.primaryColor === theme.primary
+                        ? 'border-cyan-500 bg-slate-800 shadow-lg shadow-cyan-900/10'
                         : 'border-slate-700 bg-slate-800/40 hover:border-slate-500'
-                      }`}
+                        }`}
                     >
                       <div className="flex justify-between items-start">
-                         <div className="flex -space-x-1 rtl:space-x-reverse">
-                            <div className="w-4 h-4 rounded-full border border-slate-900" style={{ backgroundColor: theme.primary }}></div>
-                            <div className="w-4 h-4 rounded-full border border-slate-900" style={{ backgroundColor: theme.secondary }}></div>
-                         </div>
-                         {currentSlide.primaryColor === theme.primary && <Check size={12} className="text-cyan-400" />}
+                        <div className="flex -space-x-1 rtl:space-x-reverse">
+                          <div className="w-4 h-4 rounded-full border border-slate-900" style={{ backgroundColor: theme.primary }}></div>
+                          <div className="w-4 h-4 rounded-full border border-slate-900" style={{ backgroundColor: theme.secondary }}></div>
+                        </div>
+                        {currentSlide.primaryColor === theme.primary && <Check size={12} className="text-cyan-400" />}
                       </div>
                       <div>
                         <span className="text-[11px] font-[700] text-slate-300 block mb-1">{theme.name}</span>
                         <div className="h-1.5 w-full bg-slate-700 rounded-full overflow-hidden flex">
-                           <div className="h-full" style={{ backgroundColor: theme.primary, width: '40%' }}></div>
-                           <div className="h-full opacity-30" style={{ backgroundColor: theme.bg, width: '60%' }}></div>
+                          <div className="h-full" style={{ backgroundColor: theme.primary, width: '40%' }}></div>
+                          <div className="h-full opacity-30" style={{ backgroundColor: theme.bg, width: '60%' }}></div>
                         </div>
                       </div>
                     </button>
@@ -281,34 +279,34 @@ const App: React.FC = () => {
               <div className="pt-4 border-t border-slate-700">
                 <h3 className="text-slate-400 font-[700] text-sm mb-4">تخصيص الألوان</h3>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-6">
-                   <div className="space-y-2">
-                      <label className="text-[11px] text-slate-500 font-[700]">الأساسي</label>
-                      <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
-                        <input type="color" value={currentSlide.primaryColor} onChange={(e) => updateSlide({ primaryColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
-                        <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.primaryColor}</span>
-                      </div>
-                   </div>
-                   <div className="space-y-2">
-                      <label className="text-[11px] text-slate-500 font-[700]">الثانوي</label>
-                      <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
-                        <input type="color" value={currentSlide.secondaryColor} onChange={(e) => updateSlide({ secondaryColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
-                        <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.secondaryColor}</span>
-                      </div>
-                   </div>
-                   <div className="space-y-2">
-                      <label className="text-[11px] text-slate-500 font-[700]">الخلفية</label>
-                      <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
-                        <input type="color" value={currentSlide.backgroundColor} onChange={(e) => updateSlide({ backgroundColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
-                        <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.backgroundColor}</span>
-                      </div>
-                   </div>
-                   <div className="space-y-2">
-                      <label className="text-[11px] text-slate-500 font-[700]">النصوص</label>
-                      <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
-                        <input type="color" value={currentSlide.textColor} onChange={(e) => updateSlide({ textColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
-                        <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.textColor}</span>
-                      </div>
-                   </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] text-slate-500 font-[700]">الأساسي</label>
+                    <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
+                      <input type="color" value={currentSlide.primaryColor} onChange={(e) => updateSlide({ primaryColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
+                      <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.primaryColor}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] text-slate-500 font-[700]">الثانوي</label>
+                    <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
+                      <input type="color" value={currentSlide.secondaryColor} onChange={(e) => updateSlide({ secondaryColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
+                      <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.secondaryColor}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] text-slate-500 font-[700]">الخلفية</label>
+                    <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
+                      <input type="color" value={currentSlide.backgroundColor} onChange={(e) => updateSlide({ backgroundColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
+                      <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.backgroundColor}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] text-slate-500 font-[700]">النصوص</label>
+                    <div className="flex items-center gap-2 bg-slate-900 p-2 rounded-lg border border-slate-700">
+                      <input type="color" value={currentSlide.textColor} onChange={(e) => updateSlide({ textColor: e.target.value })} className="w-10 h-10 rounded cursor-pointer bg-transparent border-0" />
+                      <span className="text-[10px] text-slate-400 font-mono uppercase">{currentSlide.textColor}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -375,14 +373,14 @@ const App: React.FC = () => {
         </div>
 
         <div className="p-6 bg-[#111827] border-t border-slate-700">
-           <button 
-             onClick={handleDownload}
-             disabled={isExporting}
-             className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-[700] py-4 rounded-xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-cyan-900/20 disabled:opacity-50"
-           >
-             {isExporting ? <Loader2 className="animate-spin" size={20} /> : <Download size={20} />}
-             {isExporting ? 'جاري التصدير...' : 'تحميل الصور النهائية'}
-           </button>
+          <button
+            onClick={handleDownload}
+            disabled={isExporting}
+            className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-[700] py-4 rounded-xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-cyan-900/20 disabled:opacity-50"
+          >
+            {isExporting ? <Loader2 className="animate-spin" size={20} /> : <Download size={20} />}
+            {isExporting ? 'جاري التصدير...' : 'تحميل الصور النهائية'}
+          </button>
         </div>
       </div>
 
@@ -393,7 +391,7 @@ const App: React.FC = () => {
         <div className="fixed bottom-0 left-0 w-[400px] h-[400px] bg-emerald-900/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         {/* Slide Controls Top */}
-        <div className="w-full max-w-[420px] flex justify-between items-center mb-6 z-10 sticky top-0 bg-[#0a0f1c]/80 backdrop-blur-md py-4">
+        <div className="w-full flex justify-between items-center mb-6 z-10 sticky top-0 bg-[#0a0f1c]/80 backdrop-blur-md py-4">
           <div className="flex items-center gap-4">
             <span className="text-xs font-[700] text-slate-500 uppercase tracking-widest">الشريحة {currentIndex + 1}</span>
             <div className="flex gap-2">
@@ -415,7 +413,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Preview Container */}
-        <div className="w-full max-w-[420px] relative z-10 group mb-12">
+        <div className="w-full relative z-10 group mb-12">
           {/* Navigation Arrows (Desktop) */}
           <button onClick={() => setCurrentIndex(p => Math.max(0, p - 1))} disabled={currentIndex === 0} className="fixed top-1/2 right-[420px] md:right-[calc(50%+230px)] -translate-y-1/2 p-4 bg-[#1e293b] text-white rounded-full shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity disabled:hidden border border-slate-700 hidden lg:flex">
             <ChevronRight size={24} />
@@ -425,7 +423,7 @@ const App: React.FC = () => {
           </button>
 
           {/* THE CANVAS */}
-          <div className="w-full aspect-[9/16] shadow-[0_0_80px_rgba(0,0,0,0.6)] rounded-[2.5rem] overflow-hidden border border-slate-800 ring-8 ring-slate-900/50">
+          <div className="w-full  shadow-[0_0_80px_rgba(0,0,0,0.6)] overflow-hidden border border-slate-800 ring-8 ring-slate-900/50">
             <SlideCanvas data={currentSlide} onUpdate={updateSlide} />
           </div>
         </div>
