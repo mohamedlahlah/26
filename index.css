@@ -10,8 +10,7 @@ body {
 }
 
 .canvas-container {
-  aspect-ratio: 9 / 16;
-  max-height: 85vh;
+  max-height: max-content;
 }
 
 @media (max-width: 640px) {
@@ -24,12 +23,15 @@ body {
 .font-black {
   font-weight: 900;
 }
+
 .font-bold {
   font-weight: 700;
 }
+
 .font-medium {
   font-weight: 500;
 }
+
 .font-regular {
   font-weight: 400;
 }
@@ -234,49 +236,52 @@ body {
 
 /* Al-Investor Top Brands */
 .poster-top-left-brand {
-    position: absolute;
-    top: 1rem;
-    left: 2rem;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
 .poster-top-right-brand {
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
 .poster-top-brand-text {
-    font-size: 18px;
-    font-weight: 900;
-    line-height: 1.1;
-    color: #1e293b; /* Fallback, usually overridden by inline styles if we want */
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #1e293b;
+  /* Fallback, usually overridden by inline styles if we want */
 }
 
 .poster-top-brand-subtext {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #475569; /* Fallback */
-    font-family: ui-sans-serif, system-ui, sans-serif; /* Lighter english font */
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #475569;
+  /* Fallback */
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  /* Lighter english font */
 }
